@@ -20,8 +20,9 @@ redirect_from:
 I am an Eng.D. student at the College of Computer and Information Technology, <a href='https://www.bjtu.edu.cn/'>Beijing Jiaotong University(BJTU)</a>. My supervised by Prof. <a href='https://faculty.bjtu.edu.cn/8516/'>Dongxia Chang</a> in the Center of Digital Media Information Processing Lab (Mepro). I have published several papers in SCI/CCF conferences and journals, including ACM MM and Neurocomputing. 
 
 My research interests include multi-view/multi-modal representation learning, deep clustering, self-supervised learning, and contrastive learning. In particular, I focus on:
-- 🧠 **Contrastive Multi-view Clustering**
-- 🌐 **Self-supervised Multi-view Representation Learning**
+- 🔍 **Contrastive Multi-view Clustering**
+- 🧠 **Incremental Multi-view/Multi-Modal Representation Learning**
+- 🌐 **Self-supervised Multi-view/Multi-Modal Representation Learning**
 
 
 # 🔥 News
@@ -37,15 +38,13 @@ My research interests include multi-view/multi-modal representation learning, de
 
 **Pengyuan Li**, Man Liu, Dongxia Chang, Yiming Wang, Zisen Kong, Yao Zhao
 
-[**Code**]([https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=DhtAFkwAAAAJ&citation_for_view=DhtAFkwAAAAJ:ALROH1vI_8AC](https://github.com/Lummer-Li/AEMVC)) 
+[**Paper**](#) | [**Code**](https://github.com/Lummer-Li/AEMVC) 
 <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
 - We found that the embedding space learned using the encoder-decoder architecture cannot embrace the efficacy of different feature directions. Therefore, we propose a novel Activate-Then-Eliminate Strategy for Multi-View Clustering to adjust the contribution strength of different feature directions dynamically.
-- We construct a feature activation module to prevent a few dominant feature directions from controlling clustering decisions. The module enhances the discriminative capacity of embedding spaces, mitigating the adverse effect of the long-tailed distribution of embedding features on multi-view representation learning.
-- We design an inter-view mutual supervision strategy to refine the embedding representations. By uncovering cross-view consistency, it adaptively generates the view-specific thresholds, thus filtering out the redundant information.
 </div>
 </div>
 
-- [Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet](https://github.com), A, B, C, **CVPR 2020**
+- DCMVC: Dual Contrastive Multi-view Clustering, **Pengyuan Li**, Dongxia Chang, Zisen Kong, Yiming Wang, Yao Zhao, Neurocomputing 2025, CCF-C.
 
 # 🎖 Honors and Awards
 - *2023.11* First-class Academic Scholarship of Beijing Jiaotong University. 
