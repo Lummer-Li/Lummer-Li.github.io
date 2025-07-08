@@ -36,7 +36,7 @@ My research interests include multi-view/multi-modal representation learning, de
 
 [AEMVC: Mitigate Imbalanced Embedding Space in Multi-view Clustering](#)
 
-**Pengyuan Li**, Man Liu, $Dongxia Chang^*$, Yiming Wang, Zisen Kong, Yao Zhao
+**Pengyuan Li**, Man Liu, Dongxia Chang${}^*$, Yiming Wang, Zisen Kong, Yao Zhao
 
 [**Paper**](#) | [**Code**](https://github.com/Lummer-Li/AEMVC) 
 <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
@@ -44,7 +44,7 @@ My research interests include multi-view/multi-modal representation learning, de
 </div>
 </div>
 
-- [DCMVC: Dual Contrastive Multi-view Clustering](https://www.sciencedirect.com/science/article/pii/S0925231225005612), **Pengyuan Li**, $Dongxia Chang^*$, Zisen Kong, Yiming Wang, Yao Zhao, Neurocomputing 2025, CCF-C.
+- [DCMVC: Dual Contrastive Multi-view Clustering](https://www.sciencedirect.com/science/article/pii/S0925231225005612), **Pengyuan Li**, Dongxia Chang${}^*$, Zisen Kong, Yiming Wang, Yao Zhao, Neurocomputing 2025, CCF-C.
 
 # 🎖 Honors and Awards
 - *2023.11* First-class Academic Scholarship of Beijing Jiaotong University. 
