@@ -17,53 +17,42 @@ redirect_from:
 
 <span class='anchor' id='about-me'></span>
 
-I am an Eng.D. student at the College of Computer and Information Technology, <a href='https://www.bjtu.edu.cn/'>Beijing Jiaotong University(BJTU)</a>. My supervised by Prof. <a href='https://faculty.bjtu.edu.cn/8516/'>Dongxia Chang</a> in the Center of Digital Media Information Processing Lab (Mepro). I have published several papers in SCI/CCF conferences and journals, including ACM MM and Neurocomputing. 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. Suspendisse condimentum, libero vel tempus mattis, risus risus vulputate libero, elementum fermentum mi neque vel nisl. Maecenas facilisis maximus dignissim. Curabitur mattis vulputate dui, tincidunt varius libero luctus eu. Mauris mauris nulla, scelerisque eget massa id, tincidunt congue felis. Sed convallis tempor ipsum rhoncus viverra. Pellentesque nulla orci, accumsan volutpat fringilla vitae, maximus sit amet tortor. Aliquam ultricies odio ut volutpat scelerisque. Donec nisl nisl, porttitor vitae pharetra quis, fringilla sed mi. Fusce pretium dolor ut aliquam consequat. Cras volutpat, tellus accumsan mattis molestie, nisl lacus tempus massa, nec malesuada tortor leo vel quam. Aliquam vel ex consectetur, vehicula leo nec, efficitur eros. Donec convallis non urna quis feugiat.
 
-My research interests include multi-view/multi-modal representation learning, deep clustering, self-supervised learning, and contrastive learning. In particular, I focus on:
-
-- 🧠 **Contrastive Multi-view Clustering**
-- 🌐 **Self-supervised Multi-view Representation Learning**
-
-
+My research interest includes neural machine translation and computer vision. I have published more than 100 papers at the top international AI conferences with total <a href='https://scholar.google.com/citations?user=DhtAFkwAAAAJ'>google scholar citations <strong><span id='total_cit'>260000+</span></strong></a> (You can also use google scholar badge <a href='https://scholar.google.com/citations?user=DhtAFkwAAAAJ'><img src="https://img.shields.io/endpoint?url={{ url | url_encode }}&logo=Google%20Scholar&labelColor=f6f6f6&color=9cf&style=flat&label=citations"></a>).
 
 
 # 🔥 News
-- *2025.07*: &nbsp;🎉🎉 One paper has been accepted by ACM MM 2025. 
-- *2025.03*: &nbsp;🎉🎉 One paper has been accepted by Neurocomputing 2025. 
+- *2022.02*: &nbsp;🎉🎉 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
+- *2022.02*: &nbsp;🎉🎉 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
 
 # 📝 Publications 
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ACM MM 2025</div><img src='images/AEMVC.png' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">CVPR 2016</div><img src='images/500x300.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
-[AEMVC: Mitigate Imbalanced Embedding Space in Multi-view Clustering](#)
+[Deep Residual Learning for Image Recognition](https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf)
 
-**Pengyuan Li**, Man Liu, Dongxia Chang, Yiming Wang, Zisen Kong, Yao Zhao
+**Kaiming He**, Xiangyu Zhang, Shaoqing Ren, Jian Sun
 
-
-[**Project**](https://github.com/Lummer-Li/AEMVC) <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
-- We found that the embedding space learned using the encoder-decoder architecture cannot embrace the efficacy of different feature directions. Therefore, we propose a novel Activate-Then-Eliminate Strategy for Multi-View Clustering to adjust the contribution strength of different feature directions dynamically.
-- We construct a feature activation module to prevent a few dominant feature directions from controlling clustering decisions. The module enhances the discriminative capacity of embedding spaces, mitigating the adverse effect of the long-tailed distribution of embedding features on multi-view representation learning.
-- We design an inter-view mutual supervision strategy to refine the embedding representations. By uncovering cross-view consistency, it adaptively generates the view-specific thresholds, thus filtering out the redundant information.
+[**Project**](https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=DhtAFkwAAAAJ&citation_for_view=DhtAFkwAAAAJ:ALROH1vI_8AC) <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
+- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
 </div>
 </div>
 
-{%- [Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet](https://github.com), A, B, C, **CVPR 2020**%}
+- [Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet](https://github.com), A, B, C, **CVPR 2020**
 
 # 🎖 Honors and Awards
-- *2023.11* First-class Academic Scholarship of Beijing Jiaotong University. 
-- *2023.06* Outstanding Graduate Student of the School of Computer Science, Beijing Jiaotong University.
-- *2022.10* National Bronze Award of the 2022 China University Computer Competition - Team Programming Ladder Competition.
-- *2022.10* National Bronze Award of China Computer Design Contest 2022.
-
+- *2021.10* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
+- *2021.09* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
 
 # 📖 Educations
-- *2024.06 - (now)*, Eng.D. Student @ Beijing Jiaotong University, supervised by Prof. Dongxia Chang.
-- *2023.09 - 2024.06*, Master Student @ Beijing Jiaotong University, supervised by Prof. Dongxia Chang.
+- *2019.06 - 2022.04 (now)*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
+- *2015.09 - 2019.06*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
 
 # 💬 Invited Talks
 - *2021.06*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-- *2021.03*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet.  \| [\[video\]](https://github.com/)%}
+- *2021.03*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet.  \| [\[video\]](https://github.com/)
 
 # 💻 Internships
-- *2023.03 - 2023.06*, [PCITC](http://www.pcitc.com/), China.
+- *2019.05 - 2020.02*, [Lorem](https://github.com/), China.
