@@ -26,10 +26,24 @@ My research interests include multi-view/multi-modal representation learning, de
 
 
 # 🔥 News
+- *2025.07*: &nbsp;🎉🎉 One paper has been accepted by IEEE Transactions on Multimedia 2025. 
 - *2025.07*: &nbsp;🎉🎉 One paper has been accepted by ACM MM 2025. 
 - *2025.03*: &nbsp;🎉🎉 One paper has been accepted by Neurocomputing 2025. 
 
 # 📝 Publications 
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">TMM 2025</div><img src='images/MISCC.png' alt="sym" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
+
+[Deep Multi-view Clustering with Intra-view Similarity and Cross-view Correlation Learning](#)
+
+**Pengyuan Li**, Dongxia Chang*, Yiming Wang, Man Liu, Zisen Kong, Linhua Kong, Yao Zhao
+
+[**Paper**](#) | [**Code**](https://github.com/Lummer-Li/MISCC) 
+<strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
+- We present a novel deep learning framework that mitigates view bias through joint optimization of intra-view similarity and cross-view correlation. The proposed method enhances fine-grained structures within each view and adaptively balances diverse information across views, ultimately improving clustering performance.
+</div>
+</div>
+
 
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">ACM MM 2025</div><img src='images/AEMVC.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
