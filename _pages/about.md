@@ -31,7 +31,22 @@ My research interests include multi-view/multi-modal representation learning, de
 - *2025.03*: &nbsp;🎉🎉 One paper has been accepted by Neurocomputing 2025. 
 
 # 📝 Publications 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">TMM 2025</div><img src='images/MISCC.png' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ACM MM 2025</div><img src='images/AEMVC.png' alt="sym" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
+
+[AEMVC: Mitigate Imbalanced Embedding Space in Multi-view Clustering](#)
+
+**Pengyuan Li**, Man Liu, Dongxia Chang*, Yiming Wang, Zisen Kong, Yao Zhao
+
+[**Paper**](#) | [**Code**](https://github.com/Lummer-Li/AEMVC) 
+<strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
+- We found that the embedding space learned using the encoder-decoder architecture cannot embrace the efficacy of different feature directions. Therefore, we propose a novel Activate-Then-Eliminate Strategy for Multi-View Clustering to adjust the contribution strength of different feature directions dynamically.
+</div>
+</div>
+
+
+
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">TMM 2025</div><img src='images/MISCC.png' alt="sym" width="100%" height="240px"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [Deep Multi-view Clustering with Intra-view Similarity and Cross-view Correlation Learning](#)
@@ -45,18 +60,10 @@ My research interests include multi-view/multi-modal representation learning, de
 </div>
 
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ACM MM 2025</div><img src='images/AEMVC.png' alt="sym" width="100%"></div></div>
-<div class='paper-box-text' markdown="1">
 
-[AEMVC: Mitigate Imbalanced Embedding Space in Multi-view Clustering](#)
 
-**Pengyuan Li**, Man Liu, Dongxia Chang*, Yiming Wang, Zisen Kong, Yao Zhao
 
-[**Paper**](#) | [**Code**](https://github.com/Lummer-Li/AEMVC) 
-<strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
-- We found that the embedding space learned using the encoder-decoder architecture cannot embrace the efficacy of different feature directions. Therefore, we propose a novel Activate-Then-Eliminate Strategy for Multi-View Clustering to adjust the contribution strength of different feature directions dynamically.
-</div>
-</div>
+
 
 - [DCMVC: Dual Contrastive Multi-view Clustering](https://www.sciencedirect.com/science/article/pii/S0925231225005612), **Pengyuan Li**, Dongxia Chang*, Zisen Kong, Yiming Wang, Yao Zhao, Neurocomputing 2025, CCF-C.
 
