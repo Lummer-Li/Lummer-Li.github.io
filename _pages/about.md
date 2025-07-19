@@ -46,7 +46,7 @@ My research interests include multi-view/multi-modal representation learning, de
 
 
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">TMM 2025</div><img src='images/MISCC.png' alt="sym" width="100%" height="240px"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">TMM 2025</div><img src='images/MISCC.png' alt="sym" width="100%" style="height: 260px;"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [Deep Multi-view Clustering with Intra-view Similarity and Cross-view Correlation Learning](#)
@@ -60,7 +60,7 @@ My research interests include multi-view/multi-modal representation learning, de
 </div>
 
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Neurocomputing 2025</div><img src='images/DCMVC.jpg' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Neurocomputing 2025</div><img src='images/DCMVC.jpg' alt="sym" width="100%" style="height: 260px;"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [DCMVC: Dual Contrastive Multi-view Clustering](#)
