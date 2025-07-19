@@ -60,12 +60,21 @@ My research interests include multi-view/multi-modal representation learning, de
 </div>
 
 
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Neurocomputing 2025</div><img src='images/DCMVC.png' alt="sym" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
+
+[DCMVC: Dual Contrastive Multi-view Clustering](#)
+
+**Pengyuan Li**, Dongxia Chang*, Zisen Kong, Yiming Wang, Yao Zhao
+
+[**Paper**](https://www.sciencedirect.com/science/article/abs/pii/S0925231225005612) | [**Code**](https://github.com/Lummer-Li/DCMVC) 
+<strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
+- We propose a novel deep contrastive multi-view clustering method termed DCMVC. The dual contrastive mechanism can alleviate the constraints of a single positive sample on contrastive learning by incorporating category information to regularize the feature structure and fully explore the consistency of similar samples.
+</div>
+</div>
 
 
-
-
-
-- [DCMVC: Dual Contrastive Multi-view Clustering](https://www.sciencedirect.com/science/article/pii/S0925231225005612), **Pengyuan Li**, Dongxia Chang*, Zisen Kong, Yiming Wang, Yao Zhao, Neurocomputing 2025, CCF-C.
+{% - [DCMVC: Dual Contrastive Multi-view Clustering](https://www.sciencedirect.com/science/article/pii/S0925231225005612), **Pengyuan Li**, Dongxia Chang*, Zisen Kong, Yiming Wang, Yao Zhao, Neurocomputing 2025, CCF-C. %}
 
 # 🎖 Honors and Awards
 - *2023.11* First-class Academic Scholarship of Beijing Jiaotong University. 
