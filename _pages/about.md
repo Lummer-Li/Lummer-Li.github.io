@@ -74,8 +74,6 @@ My research interests include multi-view/multi-modal representation learning, de
 </div>
 
 
-{% - [DCMVC: Dual Contrastive Multi-view Clustering](https://www.sciencedirect.com/science/article/pii/S0925231225005612), **Pengyuan Li**, Dongxia Chang*, Zisen Kong, Yiming Wang, Yao Zhao, Neurocomputing 2025, CCF-C. %}
-
 # 🎖 Honors and Awards
 - *2023.11* First-class Academic Scholarship of Beijing Jiaotong University. 
 - *2023.06* Outstanding Graduate Student of the School of Computer Science, Beijing Jiaotong University.
