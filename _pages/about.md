@@ -26,6 +26,7 @@ My research interests include multi-view/multi-modal representation learning, de
 
 
 # 🔥 News
+- *2025.09*: &nbsp;🎉🎉 One paper has been accepted by Neurocomputing 2025. 
 - *2025.07*: &nbsp;🎉🎉 One paper has been accepted by IEEE Transactions on Multimedia 2025. 
 - *2025.07*: &nbsp;🎉🎉 One paper has been accepted by ACM MM 2025. 
 - *2025.03*: &nbsp;🎉🎉 One paper has been accepted by Neurocomputing 2025. 
@@ -72,6 +73,28 @@ My research interests include multi-view/multi-modal representation learning, de
 - We propose a novel deep contrastive multi-view clustering method termed DCMVC. The dual contrastive mechanism can alleviate the constraints of a single positive sample on contrastive learning by incorporating category information to regularize the feature structure and fully explore the consistency of similar samples.
 </div>
 </div>
+
+
+
+
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Neurocomputing 2025</div><img src='images/BCMVC.jpg' alt="sym" width="100%" style="height: 240px;"></div></div>
+<div class='paper-box-text' markdown="1">
+
+[Bipartite Contrastive Multi-view Clustering with Singular Value Modulation](#)
+
+Teng Zhang, **Pengyuan Li**, Zisen Kong, Dongxia Chang∗, Yao Zhao
+
+[**Paper**](#) | [**Code**](https://github.com/zhangt-make/BCMVC) 
+<strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
+- We reformulate contrastive learning as a binary classification problem, avoiding the limitation in previous contrastive methods that heavily depend on naturally paired data. By capturing sample-level and category-level consistency relationships among multiple views, the learned representations are further refined.
+</div>
+</div>
+
+
+
+
+
+
 
 
 # 🎖 Honors and Awards
