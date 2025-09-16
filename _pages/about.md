@@ -80,11 +80,11 @@ My research interests include multi-view/multi-modal representation learning, de
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">Neurocomputing 2025</div><img src='images/BCMVC.jpg' alt="sym" width="100%" style="height: 240px;"></div></div>
 <div class='paper-box-text' markdown="1">
 
-[Bipartite Contrastive Multi-view Clustering with Singular Value Modulation](#)
+[Bipartite Contrastive Multi-view Clustering with Singular Value Modulation](https://www.sciencedirect.com/science/article/abs/pii/S0925231225022003)
 
 Teng Zhang, **Pengyuan Li**, Zisen Kong, Dongxia Chang∗, Yao Zhao
 
-[**Paper**](#) | [**Code**](https://github.com/zhangt-make/BCMVC) 
+[**Paper**](https://www.sciencedirect.com/science/article/abs/pii/S0925231225022003) | [**Code**](https://github.com/zhangt-make/BCMVC) 
 <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
 - We reformulate contrastive learning as a binary classification problem, avoiding the limitation in previous contrastive methods that heavily depend on naturally paired data. By capturing sample-level and category-level consistency relationships among multiple views, the learned representations are further refined.
 </div>
