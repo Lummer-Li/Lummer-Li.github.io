@@ -64,7 +64,7 @@ My research interests include multi-view/multi-modal representation learning, de
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">Neurocomputing 2025</div><img src='images/DCMVC.jpg' alt="sym" width="100%" style="height: 240px;"></div></div>
 <div class='paper-box-text' markdown="1">
 
-[DCMVC: Dual Contrastive Multi-view Clustering](#)
+[DCMVC: Dual Contrastive Multi-view Clustering](https://www.sciencedirect.com/science/article/abs/pii/S0925231225005612)
 
 **Pengyuan Li**, Dongxia Chang*, Zisen Kong, Yiming Wang, Yao Zhao
 
