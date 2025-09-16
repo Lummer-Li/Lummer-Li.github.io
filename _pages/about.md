@@ -84,7 +84,7 @@ My research interests include multi-view/multi-modal representation learning, de
 
 Teng Zhang, **Pengyuan Li**, Zisen Kong, Dongxia Chang∗, Yao Zhao
 
-[**Paper**](https://www.sciencedirect.com/science/article/abs/pii/S0925231225022003) | [**Code**](https://github.com/zhangt-make/BCMVC) 
+<a href='https://www.sciencedirect.com/science/article/abs/pii/S0925231225022003' style='color: #224b8d; font-size: 1em; font-weight: bolder; text-decoration: underline;'>Paper</a> | <a href='https://github.com/zhangt-make/BCMVC' style='color: #224b8d; font-size: 1em; font-weight: bolder; text-decoration: underline;'>Code</a> 
 <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
 - We reformulate contrastive learning as a binary classification problem, avoiding the limitation in previous contrastive methods that heavily depend on naturally paired data. By capturing sample-level and category-level consistency relationships among multiple views, the learned representations are further refined.
 </div>
