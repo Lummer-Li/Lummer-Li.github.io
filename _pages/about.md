@@ -26,6 +26,7 @@ My research interests include multi-view/multi-modal representation learning, de
 
 
 # 🔥 News
+- *2025.10*: &nbsp;🎉🎉 One paper has been accepted by Neurocomputing 2025. 
 - *2025.09*: &nbsp;🎉🎉 One paper has been accepted by Neurocomputing 2025. 
 - *2025.07*: &nbsp;🎉🎉 One paper has been accepted by IEEE Transactions on Multimedia 2025. 
 - *2025.07*: &nbsp;🎉🎉 One paper has been accepted by ACM MM 2025. 
@@ -91,6 +92,19 @@ Teng Zhang, **Pengyuan Li**, Zisen Kong, Dongxia Chang∗, Yao Zhao
 </div>
 
 
+
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Neurocomputing 2025</div><img src='images/LGEAC.png' alt="sym" width="100%" style="height: 240px;"></div></div>
+<div class='paper-box-text' markdown="1">
+
+[Local Geometry-Enhanced Anchor Learning for Multi-view Clustering](#)
+
+Zisen Kong, Zhiqiang Fu, Dongxia Chang*, Yiming Wang, **Pengyuan Li**, Yao Zhao
+
+<a href='#' style='color: #224b8d; font-size: 1em; font-weight: bolder; text-decoration: underline;'>Paper</a> | <a href='#' style='color: #224b8d; font-size: 1em; font-weight: bolder; text-decoration: underline;'>Code</a> 
+<strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
+- We introduce a coarse-grained anchor learning mechanism that maps each view anchor to the consensus space, effectively improving the expressiveness and learning of the framework.
+</div>
+</div>
 
 
 
