@@ -39,7 +39,7 @@ My research interests include multi-view/multi-modal representation learning, de
 
 **Pengyuan Li**, Man Liu, Dongxia Chang*, Yiming Wang, Zisen Kong, Yao Zhao
 
-[**Paper**](#) | [**Code**](https://github.com/Lummer-Li/AEMVC) 
+[**Paper**](https://dl.acm.org/doi/10.1145/3746027.3754697) | [**Code**](https://github.com/Lummer-Li/AEMVC) 
 <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
 - We found that the embedding space learned using the encoder-decoder architecture cannot embrace the efficacy of different feature directions. Therefore, we propose a novel Activate-Then-Eliminate Strategy for Multi-View Clustering to adjust the contribution strength of different feature directions dynamically.
 </div>
