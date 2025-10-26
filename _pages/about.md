@@ -35,7 +35,7 @@ My research interests include multi-view/multi-modal representation learning, de
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">ACM MM 2025</div><img src='images/AEMVC.png' alt="sym" width="100%" style="height: 240px;"></div></div>
 <div class='paper-box-text' markdown="1">
 
-[AEMVC: Mitigate Imbalanced Embedding Space in Multi-view Clustering](#)
+[AEMVC: Mitigate Imbalanced Embedding Space in Multi-view Clustering](https://dl.acm.org/doi/10.1145/3746027.3754697)
 
 **Pengyuan Li**, Man Liu, Dongxia Chang*, Yiming Wang, Zisen Kong, Yao Zhao
 
