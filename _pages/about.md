@@ -83,7 +83,7 @@ My research interests include multi-view/multi-modal representation learning, de
 
 [Bipartite Contrastive Multi-view Clustering with Singular Value Modulation](https://www.sciencedirect.com/science/article/abs/pii/S0925231225022003)
 
-Teng Zhang, **Pengyuan Li**, Zisen Kong, Dongxia Chang∗, Yao Zhao
+Teng Zhang, **Pengyuan Li**, Zisen Kong, Dongxia Chang*, Yao Zhao
 
 <a href='https://www.sciencedirect.com/science/article/abs/pii/S0925231225022003' style='color: #224b8d; font-size: 1em; font-weight: bolder; text-decoration: underline;'>Paper</a> | <a href='https://github.com/zhangt-make/BCMVC' style='color: #224b8d; font-size: 1em; font-weight: bolder; text-decoration: underline;'>Code</a> 
 <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
