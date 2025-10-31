@@ -96,11 +96,11 @@ Teng Zhang, **Pengyuan Li**, Zisen Kong, Dongxia Chang*, Yao Zhao
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">Neurocomputing 2025</div><img src='images/LGEAC.png' alt="sym" width="100%" style="height: 240px;"></div></div>
 <div class='paper-box-text' markdown="1">
 
-[Local Geometry-Enhanced Anchor Learning for Multi-view Clustering](#)
+[Local Geometry-Enhanced Anchor Learning for Multi-view Clustering](https://www.sciencedirect.com/science/article/abs/pii/S0925231225026256)
 
 Zisen Kong, Zhiqiang Fu, Dongxia Chang*, Yiming Wang, **Pengyuan Li**, Yao Zhao
 
-<a href='#' style='color: #224b8d; font-size: 1em; font-weight: bolder; text-decoration: underline;'>Paper</a> | <a href='#' style='color: #224b8d; font-size: 1em; font-weight: bolder; text-decoration: underline;'>Code</a> 
+<a href='https://www.sciencedirect.com/science/article/abs/pii/S0925231225026256' style='color: #224b8d; font-size: 1em; font-weight: bolder; text-decoration: underline;'>Paper</a> | <a href='#' style='color: #224b8d; font-size: 1em; font-weight: bolder; text-decoration: underline;'>Code</a> 
 <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
 - We introduce a coarse-grained anchor learning mechanism that maps each view anchor to the consensus space, effectively improving the expressiveness and learning of the framework.
 </div>
