@@ -134,49 +134,69 @@ function generateSVG(stats, rankInfo) {
   const finalDashoffset = circumference - (totalScore / 100) * circumference;
 
   return `
-<svg width="520" height="320" viewBox="0 0 520 320" xmlns="http://www.w3.org/2000/svg">
-  <!-- 1. 卡片主体：白色圆角 + 加强四周阴影（核心修改） -->
-  <rect x="10" y="10" width="500" height="300" rx="16" fill="#ffffff" stroke="#f5f7fa" stroke-width="1" filter="drop-shadow(0 6px 12px rgba(0,0,0,0.08))"/>
+<svg width="550" height="350" viewBox="0 0 550 350" xmlns="http://www.w3.org/2000/svg">
+  <!-- 1. 主卡片：白色圆角 + 柔和阴影（更立体） -->
+  <rect x="15" y="15" width="520" height="320" rx="20" fill="#ffffff" stroke="#f0f5ff" stroke-width="1" filter="drop-shadow(0 8px 16px rgba(22,93,255,0.06))"/>
   
-  <!-- 2. 移除左侧蓝边（直接删除原来的蓝边rect标签） -->
-  
-  <!-- 3. 渐变定义（仅保留圆环渐变，不影响其他样式） -->
+  <!-- 2. 渐变定义（柔和蓝调，不刺眼） -->
   <defs>
     <linearGradient id="circleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#165DFF"/><stop offset="100%" stop-color="#4080FF"/>
+      <stop offset="0%" stop-color="#165DFF" stop-opacity="0.9"/><stop offset="100%" stop-color="#4080FF" stop-opacity="0.9"/>
+    </linearGradient>
+    <linearGradient id="itemGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#E8F1FF" stop-opacity="0.8"/><stop offset="100%" stop-color="#F0F5FF" stop-opacity="0.8"/>
     </linearGradient>
   </defs>
 
-  <!-- 4. 标题和用户名（调整左边距，适配无蓝边） -->
-  <text x="30" y="50" font-size="20" font-weight="600" fill="#165DFF" font-family="Arial,sans-serif">GitHub Stats</text>
-  <text x="30" y="78" font-size="13" fill="#86909C" font-family="Arial,sans-serif">@${USERNAME}</text>
-
-  <!-- 5. 统计项（排版不变，保持整齐） -->
-  <g font-family="Arial,sans-serif">
-    <text x="30" y="120" font-size="14" fill="#4E5969">Total Stars Earned:</text>
-    <text x="230" y="120" font-size="15" font-weight="500" fill="#1D2129">${stats.stars}</text>
-    
-    <text x="30" y="155" font-size="14" fill="#4E5969">Total Commits (${CURRENT_YEAR}):</text>
-    <text x="230" y="155" font-size="15" font-weight="500" fill="#1D2129">${stats.commits}</text>
-    
-    <text x="30" y="190" font-size="14" fill="#4E5969">Total PRs:</text>
-    <text x="230" y="190" font-size="15" font-weight="500" fill="#1D2129">${stats.prs}</text>
-    
-    <text x="30" y="225" font-size="14" fill="#4E5969">Total Issues:</text>
-    <text x="230" y="225" font-size="15" font-weight="500" fill="#1D2129">${stats.issues}</text>
-    
-    <text x="30" y="260" font-size="14" fill="#4E5969">Contributed to (last year):</text>
-    <text x="230" y="260" font-size="15" font-weight="500" fill="#1D2129">${stats.contributions}</text>
+  <!-- 3. 标题区：GitHub Logo + 标题（核心新增） -->
+  <g transform="translate(35, 55)">
+    <!-- GitHub 小 Logo（SVG 原生绘制，无需外部资源） -->
+    <g fill="#165DFF" transform="scale(0.8)">
+      <rect x="0" y="0" width="28" height="28" rx="3"/>
+      <rect x="7" y="7" width="6" height="14" rx="1" fill="#ffffff"/>
+      <rect x="15" y="7" width="6" height="10" rx="1" fill="#ffffff"/>
+    </g>
+    <!-- 标题文字（和 Logo 对齐） -->
+    <text x="35" y="7" font-size="22" font-weight="600" fill="#165DFF" font-family="Arial,sans-serif">GitHub Stats</text>
+    <text x="35" y="30" font-size="14" fill="#86909C" font-family="Arial,sans-serif">@${USERNAME}</text>
   </g>
 
-  <!-- 6. 动态圆环（保留之前的兼容动画） -->
-  <g>
-    <circle cx="410" cy="160" r="45" fill="none" stroke="#F0F5FF" stroke-width="9"/>
-    <circle cx="410" cy="160" r="45" fill="none" stroke="url(#circleGradient)" stroke-width="9" stroke-linecap="round" transform="rotate(-90 410 160)" stroke-dasharray="${circumference}" stroke-dashoffset="${circumference}">
-      <animate attributeName="stroke-dashoffset" from="${circumference}" to="${finalDashoffset}" dur="1.5s" calcMode="linear" fill="freeze"/>
+  <!-- 4. 统计项：卡片式布局（浅蓝背景 + 圆角，每个数据独立） -->
+  <g font-family="Arial,sans-serif" transform="translate(35, 100)">
+    <!-- Stars -->
+    <rect x="0" y="0" width="180" height="45" rx="10" fill="url(#itemGradient)"/>
+    <text x="15" y="25" font-size="13" fill="#4E5969">Total Stars</text>
+    <text x="150" y="25" font-size="18" font-weight="600" fill="#165DFF" text-anchor="end">${stats.stars}</text>
+    
+    <!-- Commits -->
+    <rect x="0" y="60" width="180" height="45" rx="10" fill="url(#itemGradient)"/>
+    <text x="15" y="85" font-size="13" fill="#4E5969">${CURRENT_YEAR} Commits</text>
+    <text x="150" y="85" font-size="18" font-weight="600" fill="#165DFF" text-anchor="end">${stats.commits}</text>
+    
+    <!-- PRs -->
+    <rect x="200" y="0" width="180" height="45" rx="10" fill="url(#itemGradient)"/>
+    <text x="215" y="25" font-size="13" fill="#4E5969">Total PRs</text>
+    <text x="350" y="25" font-size="18" font-weight="600" fill="#165DFF" text-anchor="end">${stats.prs}</text>
+    
+    <!-- Issues -->
+    <rect x="200" y="60" width="180" height="45" rx="10" fill="url(#itemGradient)"/>
+    <text x="215" y="85" font-size="13" fill="#4E5969">Total Issues</text>
+    <text x="350" y="85" font-size="18" font-weight="600" fill="#165DFF" text-anchor="end">${stats.issues}</text>
+    
+    <!-- Contributions -->
+    <rect x="100" y="120" width="180" height="45" rx="10" fill="url(#itemGradient)"/>
+    <text x="115" y="145" font-size="13" fill="#4E5969">Contributed Repos</text>
+    <text x="250" y="145" font-size="18" font-weight="600" fill="#165DFF" text-anchor="end">${stats.contributions}</text>
+  </g>
+
+  <!-- 5. 动态圆环（右侧独立区域，更突出） -->
+  <g transform="translate(430, 175)">
+    <circle cx="0" cy="0" r="50" fill="none" stroke="#F0F5FF" stroke-width="10"/>
+    <circle cx="0" cy="0" r="50" fill="none" stroke="url(#circleGradient)" stroke-width="10" stroke-linecap="round" transform="rotate(-90)" stroke-dasharray="${circumference}" stroke-dashoffset="${circumference}">
+      <animate attributeName="stroke-dashoffset" from="${circumference}" to="${finalDashoffset}" dur="1.8s" calcMode="ease-out" fill="freeze"/>
     </circle>
-    <text x="410" y="168" font-size="26" font-weight="700" fill="#165DFF" text-anchor="middle" font-family="Arial,sans-serif">${rank}</text>
-    <text x="410" y="215" font-size="13" fill="#86909C" text-anchor="middle" font-family="Arial,sans-serif">Academic Rank</text>
+    <text x="0" y="8" font-size="28" font-weight="700" fill="#165DFF" text-anchor="middle" font-family="Arial,sans-serif">${rank}</text>
+    <text x="0" y="40" font-size="14" fill="#86909C" text-anchor="middle" font-family="Arial,sans-serif">Rank</text>
   </g>
 </svg>
   `.trim().replace(/\n\s+/g, ' ');
@@ -188,7 +208,7 @@ async function main() {
     const stats = await fetchStats();
     const rankInfo = calculateRank(stats);
     const svg = generateSVG(stats, rankInfo);
-    const svgPath = path.join(statsDir, 'stats-card-auto.svg'); // 保存到 stats 文件夹
+    const svgPath = path.join(statsDir, 'stats-card.svg'); // 保存到 stats 文件夹
     fs.writeFileSync(svgPath, svg);
     console.log('SVG 生成成功：', svgPath);
   } catch (err) {
