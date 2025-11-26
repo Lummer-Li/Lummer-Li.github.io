@@ -10,17 +10,17 @@
   <text x="20" y="40" font-size="18" font-weight="600" fill="#165DFF">GitHub Stats</text>
   <text x="20" y="65" font-size="12" fill="#86909C">@Lummer-Li</text>
   <text x="20" y="100" font-size="14" fill="#4E5969">Total Stars Earned: </text>
-  <text x="220" y="100" font-size="14" font-weight="500" fill="#1D2129">0</text>
+  <text x="220" y="100" font-size="14" font-weight="500" fill="#1D2129">34</text>
   <text x="20" y="130" font-size="14" fill="#4E5969">Total Commits (2025): </text>
-  <text x="220" y="130" font-size="14" font-weight="500" fill="#1D2129">0</text>
+  <text x="220" y="130" font-size="14" font-weight="500" fill="#1D2129">105</text>
   <text x="20" y="160" font-size="14" fill="#4E5969">Total PRs: </text>
   <text x="220" y="160" font-size="14" font-weight="500" fill="#1D2129">0</text>
   <text x="20" y="190" font-size="14" fill="#4E5969">Total Issues: </text>
   <text x="220" y="190" font-size="14" font-weight="500" fill="#1D2129">0</text>
   <text x="20" y="220" font-size="14" fill="#4E5969">Contributed to (last year): </text>
-  <text x="220" y="220" font-size="14" font-weight="500" fill="#1D2129">0</text>
+  <text x="220" y="220" font-size="14" font-weight="500" fill="#1D2129">6</text>
   <circle cx="400" cy="120" r="42" fill="none" stroke="#E8F3FF" stroke-width="8"/>
-  <circle cx="400" cy="120" r="42" fill="none" stroke="#165DFF" stroke-width="8" stroke-linecap="round" transform="rotate(-90 400 120)" stroke-dasharray="263.89378290154264" stroke-dashoffset="263.89378290154264"/>
+  <circle cx="400" cy="120" r="42" fill="none" stroke="#165DFF" stroke-width="8" stroke-linecap="round" transform="rotate(-90 400 120)" stroke-dasharray="263.89378290154264" stroke-dashoffset="226.42086572952357"/>
   <text x="400" y="125" font-size="24" font-weight="700" fill="#165DFF" text-anchor="middle">D</text>
   <text x="400" y="180" font-size="12" fill="#86909C" text-anchor="middle">Academic Rank</text>
 </svg>
