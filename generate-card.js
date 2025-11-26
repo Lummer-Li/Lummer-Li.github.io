@@ -13,84 +13,93 @@ if (!fs.existsSync(statsDir)) {
   fs.mkdirSync(statsDir);
 }
 
-// 1. 调用 GitHub API 获取数据（逻辑不变）
 async function fetchStats() {
+  const USERNAME = 'Lummer-Li'; // 你的 GitHub 用户名（已确认正确）
+  const GITHUB_TOKEN = process.env.STATS_CARD_TOKEN;
+  const CURRENT_YEAR = new Date().getFullYear();
+
   const headers = {
     'Accept': 'application/vnd.github.v3+json',
-    // 简化 User-Agent：纯英文+连字符，无非法字符（关键修改）
-    'User-Agent': 'GitHub-Stats-Card-Bot', 
+    'User-Agent': 'GitHub-Stats-Card-Bot', // 合法格式，已验证
     ...(GITHUB_TOKEN && { 'Authorization': `token ${GITHUB_TOKEN}` })
   };
 
-  // 1. 仅测试「用户信息接口」（注释其他接口，排除干扰）
   try {
+    // 1. 获取用户基础信息（仅验证接口，无需统计）
     const userRes = await fetch(`https://api.github.com/users/${USERNAME}`, { headers });
-    // 打印完整响应信息（状态码 + 响应体）
-    const responseText = await userRes.text(); // 获取响应体内容
-    if (!userRes.ok) {
-      throw new Error(`用户信息请求失败：状态码 ${userRes.status}，响应体：${responseText}`);
-    }
-    console.log('用户信息请求成功！响应体：', responseText);
-    return { stars: 0, commits: 0, prs: 0, issues: 0, contributions: 0 }; // 临时返回空数据
+    const userText = await userRes.text();
+    if (!userRes.ok) throw new Error(`用户接口失败：${userRes.status}，${userText}`);
+
+    // 2. 获取仓库数据 → 计算 Stars 总数
+    const reposRes = await fetch(`https://api.github.com/users/${USERNAME}/repos?per_page=100`, { headers });
+    const reposText = await reposRes.text();
+    if (!reposRes.ok) throw new Error(`仓库接口失败：${reposRes.status}，${reposText}`);
+    const repos = JSON.parse(reposText); // 解析 JSON 数据（关键：之前可能漏了解析）
+    const totalStars = repos.length > 0 ? repos.reduce((sum, repo) => sum + repo.stargazers_count, 0) : 0;
+
+    // 3. 获取当年提交数（search/commits 接口）
+    const commitsRes = await fetch(
+      `https://api.github.com/search/commits?q=author:${USERNAME}+committer-date:${CURRENT_YEAR}-01-01..${CURRENT_YEAR}-12-31`,
+      { headers }
+    );
+    const commitsText = await commitsRes.text();
+    if (!commitsRes.ok) throw new Error(`提交接口失败：${commitsRes.status}，${commitsText}`);
+    const commitsData = JSON.parse(commitsText);
+    const totalCommits = commitsData.total_count || 0;
+
+    // 4. 获取 PR 总数（search/issues 接口，type:pr）
+    const prsRes = await fetch(
+      `https://api.github.com/search/issues?q=author:${USERNAME}+type:pr+state:all`,
+      { headers }
+    );
+    const prsText = await prsRes.text();
+    if (!prsRes.ok) throw new Error(`PR 接口失败：${prsRes.status}，${prsText}`);
+    const prsData = JSON.parse(prsText);
+    const totalPRs = prsData.total_count || 0;
+
+    // 5. 获取 Issues 总数（search/issues 接口，type:issue）
+    const issuesRes = await fetch(
+      `https://api.github.com/search/issues?q=author:${USERNAME}+type:issue+state:all`,
+      { headers }
+    );
+    const issuesText = await issuesRes.text();
+    if (!issuesRes.ok) throw new Error(`Issues 接口失败：${issuesRes.status}，${issuesText}`);
+    const issuesData = JSON.parse(issuesText);
+    const totalIssues = issuesData.total_count || 0;
+
+    // 6. 获取贡献仓库数（events 接口）
+    const oneYearAgo = new Date();
+    oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+    const contribRes = await fetch(
+      `https://api.github.com/users/${USERNAME}/events?per_page=300&since=${oneYearAgo.toISOString().split('T')[0]}`,
+      { headers }
+    );
+    const contribText = await contribRes.text();
+    if (!contribRes.ok) throw new Error(`贡献接口失败：${contribRes.status}，${contribText}`);
+    const events = JSON.parse(contribText);
+    const contribRepos = new Set(events.filter(e => e.repo && e.type !== 'WatchEvent').map(e => e.repo.name));
+    const totalContribs = contribRepos.size;
+
+    // 打印统计结果（方便查看日志，确认数据非空）
+    console.log('获取数据成功：', {
+      stars: totalStars,
+      commits: totalCommits,
+      prs: totalPRs,
+      issues: totalIssues,
+      contributions: totalContribs
+    });
+
+    // 返回完整统计数据（关键：不再返回空数据）
+    return {
+      stars: totalStars,
+      commits: totalCommits,
+      prs: totalPRs,
+      issues: totalIssues,
+      contributions: totalContribs
+    };
   } catch (err) {
     throw new Error(`获取用户信息失败：${err.message}`);
   }
-
-  // 获取用户信息
-  const userRes = await fetch(`https://api.github.com/users/${USERNAME}`, { headers });
-  if (!userRes.ok) throw new Error('获取用户信息失败');
-
-  // 获取仓库数据（Stars 总数）
-  const reposRes = await fetch(`https://api.github.com/users/${USERNAME}/repos?per_page=100`, { headers });
-  if (!reposRes.ok) throw new Error('获取仓库数据失败');
-  const repos = await reposRes.json();
-  const totalStars = repos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
-
-  // 获取当年提交数
-  const commitsRes = await fetch(
-    `https://api.github.com/search/commits?q=author:${USERNAME}+committer-date:${CURRENT_YEAR}-01-01..${CURRENT_YEAR}-12-31`,
-    { headers }
-  );
-  if (!commitsRes.ok) throw new Error('获取提交数据失败');
-  const commitsData = await commitsRes.json();
-  const totalCommits = commitsData.total_count || 0;
-
-  // 获取 PR 总数
-  const prsRes = await fetch(
-    `https://api.github.com/search/issues?q=author:${USERNAME}+type:pr+state:all`,
-    { headers }
-  );
-  if (!prsRes.ok) throw new Error('获取 PR 数据失败');
-  const prsData = await prsRes.json();
-  const totalPRs = prsData.total_count || 0;
-
-  // 获取 Issues 总数
-  const issuesRes = await fetch(
-    `https://api.github.com/search/issues?q=author:${USERNAME}+type:issue+state:all`,
-    { headers }
-  );
-  if (!issuesRes.ok) throw new Error('获取 Issues 数据失败');
-  const issuesData = await issuesRes.json();
-  const totalIssues = issuesData.total_count || 0;
-
-  // 获取贡献仓库数
-  const oneYearAgo = new Date();
-  oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
-  const contribRes = await fetch(
-    `https://api.github.com/users/${USERNAME}/events?per_page=300&since=${oneYearAgo.toISOString().split('T')[0]}`,
-    { headers }
-  );
-  if (!contribRes.ok) throw new Error('获取贡献数据失败');
-  const events = await contribRes.json();
-  const contribRepos = new Set(events.filter(e => e.repo && e.type !== 'WatchEvent').map(e => e.repo.name));
-
-  return {
-    stars: totalStars,
-    commits: totalCommits,
-    prs: totalPRs,
-    issues: totalIssues,
-    contributions: contribRepos.size
-  };
 }
 
 // 2. 计算等级（复用你的逻辑）
