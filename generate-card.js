@@ -130,73 +130,78 @@ function calculateRank(stats) {
 
 function generateSVG(stats, rankInfo) {
   const { rank, totalScore } = rankInfo;
-  const circumference = 2 * Math.PI * 45;
+  const circumference = 2 * Math.PI * 30; // 圆环半径30（小尺寸）
   const finalDashoffset = circumference - (totalScore / 100) * circumference;
 
   return `
-<svg width="550" height="350" viewBox="0 0 550 350" xmlns="http://www.w3.org/2000/svg">
-  <!-- 1. 主卡片：白色圆角 + 柔和阴影（更立体） -->
-  <rect x="15" y="15" width="520" height="320" rx="20" fill="#ffffff" stroke="#f0f5ff" stroke-width="1" filter="drop-shadow(0 8px 16px rgba(22,93,255,0.06))"/>
+<svg width="580" height="380" viewBox="0 0 580 380" xmlns="http://www.w3.org/2000/svg">
+  <!-- 主卡片：白色圆角+柔和阴影 -->
+  <rect x="20" y="20" width="540" height="340" rx="20" fill="#ffffff" stroke="#f0f5ff" stroke-width="1" filter="drop-shadow(0 8px 16px rgba(22,93,255,0.06))"/>
   
-  <!-- 2. 渐变定义（柔和蓝调，不刺眼） -->
+  <!-- 渐变定义 -->
   <defs>
     <linearGradient id="circleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#165DFF" stop-opacity="0.9"/><stop offset="100%" stop-color="#4080FF" stop-opacity="0.9"/>
     </linearGradient>
     <linearGradient id="itemGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#E8F1FF" stop-opacity="0.8"/><stop offset="100%" stop-color="#F0F5FF" stop-opacity="0.8"/>
+      <stop offset="0%" stop-color="#E8F1FF" stop-opacity="0.9"/><stop offset="100%" stop-color="#F0F5FF" stop-opacity="0.9"/>
     </linearGradient>
   </defs>
 
-  <!-- 3. 标题区：GitHub Logo + 标题（核心新增） -->
-  <g transform="translate(35, 55)">
-    <!-- GitHub 小 Logo（SVG 原生绘制，无需外部资源） -->
-    <g fill="#165DFF" transform="scale(0.8)">
+  <!-- 标题区：左上角 Logo + 标题 -->
+  <g>
+    <g fill="#165DFF" transform="translate(40, 50) scale(0.9)">
       <rect x="0" y="0" width="28" height="28" rx="3"/>
       <rect x="7" y="7" width="6" height="14" rx="1" fill="#ffffff"/>
       <rect x="15" y="7" width="6" height="10" rx="1" fill="#ffffff"/>
     </g>
-    <!-- 标题文字（和 Logo 对齐） -->
-    <text x="35" y="7" font-size="22" font-weight="600" fill="#165DFF" font-family="Arial,sans-serif">GitHub Stats</text>
-    <text x="35" y="30" font-size="14" fill="#86909C" font-family="Arial,sans-serif">@${USERNAME}</text>
+    <text x="80" y="65" font-size="22" font-weight="600" fill="#165DFF" font-family="Arial,sans-serif">GitHub Stats</text>
+    <text x="80" y="90" font-size="14" fill="#86909C" font-family="Arial,sans-serif">@${USERNAME}</text>
   </g>
 
-  <!-- 4. 统计项：卡片式布局（浅蓝背景 + 圆角，每个数据独立） -->
-  <g font-family="Arial,sans-serif" transform="translate(35, 100)">
-    <!-- Stars -->
-    <rect x="0" y="0" width="180" height="45" rx="10" fill="url(#itemGradient)"/>
-    <text x="15" y="25" font-size="13" fill="#4E5969">Total Stars</text>
-    <text x="150" y="25" font-size="18" font-weight="600" fill="#165DFF" text-anchor="end">${stats.stars}</text>
-    
-    <!-- Commits -->
-    <rect x="0" y="60" width="180" height="45" rx="10" fill="url(#itemGradient)"/>
-    <text x="15" y="85" font-size="13" fill="#4E5969">${CURRENT_YEAR} Commits</text>
-    <text x="150" y="85" font-size="18" font-weight="600" fill="#165DFF" text-anchor="end">${stats.commits}</text>
-    
-    <!-- PRs -->
-    <rect x="200" y="0" width="180" height="45" rx="10" fill="url(#itemGradient)"/>
-    <text x="215" y="25" font-size="13" fill="#4E5969">Total PRs</text>
-    <text x="350" y="25" font-size="18" font-weight="600" fill="#165DFF" text-anchor="end">${stats.prs}</text>
-    
-    <!-- Issues -->
-    <rect x="200" y="60" width="180" height="45" rx="10" fill="url(#itemGradient)"/>
-    <text x="215" y="85" font-size="13" fill="#4E5969">Total Issues</text>
-    <text x="350" y="85" font-size="18" font-weight="600" fill="#165DFF" text-anchor="end">${stats.issues}</text>
-    
-    <!-- Contributions -->
-    <rect x="100" y="120" width="180" height="45" rx="10" fill="url(#itemGradient)"/>
-    <text x="115" y="145" font-size="13" fill="#4E5969">Contributed Repos</text>
-    <text x="250" y="145" font-size="18" font-weight="600" fill="#165DFF" text-anchor="end">${stats.contributions}</text>
-  </g>
-
-  <!-- 5. 动态圆环（右侧独立区域，更突出） -->
-  <g transform="translate(430, 175)">
-    <circle cx="0" cy="0" r="50" fill="none" stroke="#F0F5FF" stroke-width="10"/>
-    <circle cx="0" cy="0" r="50" fill="none" stroke="url(#circleGradient)" stroke-width="10" stroke-linecap="round" transform="rotate(-90)" stroke-dasharray="${circumference}" stroke-dashoffset="${circumference}">
+  <!-- 右上角圆环（小尺寸+无Rank文字+动态填充） -->
+  <g transform="translate(500, 70)">
+    <circle cx="0" cy="0" r="30" fill="none" stroke="#F0F5FF" stroke-width="8"/>
+    <circle cx="0" cy="0" r="30" fill="none" stroke="url(#circleGradient)" stroke-width="8" stroke-linecap="round" transform="rotate(-90)" stroke-dasharray="${circumference}" stroke-dashoffset="${circumference}">
       <animate attributeName="stroke-dashoffset" from="${circumference}" to="${finalDashoffset}" dur="1.8s" calcMode="ease-out" fill="freeze"/>
     </circle>
-    <text x="0" y="8" font-size="28" font-weight="700" fill="#165DFF" text-anchor="middle" font-family="Arial,sans-serif">${rank}</text>
-    <text x="0" y="40" font-size="14" fill="#86909C" text-anchor="middle" font-family="Arial,sans-serif">Rank</text>
+    <text x="0" y="5" font-size="22" font-weight="700" fill="#165DFF" text-anchor="middle" font-family="Arial,sans-serif">${rank}</text>
+  </g>
+
+  <!-- 统计项区：Logo和文字垂直对齐，动态填充数据 -->
+  <g font-family="Arial,sans-serif">
+    <!-- Stars（星星Logo） -->
+    <rect x="40" y="130" width="220" height="50" rx="12" fill="url(#itemGradient)"/>
+    <path d="M55 160 L58 154 L65 154 L60 149 L62 143 L55 147 L48 143 L50 149 L45 154 L52 154 Z" fill="#165DFF" transform="translate(0, -1)"/>
+    <text x="75" y="160" font-size="14" fill="#4E5969">Total Stars</text>
+    <text x="230" y="160" font-size="18" font-weight="600" fill="#165DFF" text-anchor="end">${stats.stars}</text>
+    
+    <!-- Commits（代码分支Logo） -->
+    <rect x="280" y="130" width="220" height="50" rx="12" fill="url(#itemGradient)"/>
+    <path d="M295 160 L305 160 L305 153 L300 153 L300 148 L295 148 L295 153 L290 153 L290 167 L295 167 Z M300 160 L308 160 L310 163 L305 163 L305 168 L300 168 L300 163 L295 163 L297 160 Z" fill="#165DFF" transform="translate(0, -1)"/>
+    <text x="315" y="160" font-size="14" fill="#4E5969">${CURRENT_YEAR} Commits</text>
+    <text x="470" y="160" font-size="18" font-weight="600" fill="#165DFF" text-anchor="end">${stats.commits}</text>
+    
+    <!-- PRs（合并箭头Logo） -->
+    <rect x="40" y="200" width="220" height="50" rx="12" fill="url(#itemGradient)"/>
+    <path d="M55 230 L65 230 L55 240 L58 230 L52 230 Z" fill="#165DFF" transform="translate(0, -1)"/>
+    <rect x="57" y="227" width="8" height="6" fill="#165DFF"/>
+    <text x="75" y="230" font-size="14" fill="#4E5969">Total PRs</text>
+    <text x="230" y="230" font-size="18" font-weight="600" fill="#165DFF" text-anchor="end">${stats.prs}</text>
+    
+    <!-- Issues（感叹号Logo） -->
+    <rect x="280" y="200" width="220" height="50" rx="12" fill="url(#itemGradient)"/>
+    <rect x="295" y="225" width="6" height="10" fill="#165DFF"/>
+    <rect x="297" y="239" width="2" height="4" fill="#165DFF"/>
+    <text x="315" y="230" font-size="14" fill="#4E5969">Total Issues</text>
+    <text x="470" y="230" font-size="18" font-weight="600" fill="#165DFF" text-anchor="end">${stats.issues}</text>
+    
+    <!-- Contributions（仓库Logo） -->
+    <rect x="40" y="270" width="460" height="50" rx="12" fill="url(#itemGradient)"/>
+    <rect x="55" y="295" width="12" height="8" fill="#165DFF" rx="1"/>
+    <rect x="52" y="290" width="18" height="5" fill="#165DFF" rx="1"/>
+    <text x="75" y="300" font-size="14" fill="#4E5969">Contributed Repos (Last Year)</text>
+    <text x="470" y="300" font-size="18" font-weight="600" fill="#165DFF" text-anchor="end">${stats.contributions}</text>
   </g>
 </svg>
   `.trim().replace(/\n\s+/g, ' ');
