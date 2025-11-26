@@ -21,7 +21,7 @@ jobs:
 
       - name: 生成 SVG 卡片
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}} # GitHub 自动提供，无需手动配置
+          STATS_CARD_TOKEN: ${{ secrets.STATS_CARD_TOKEN }} # 对应 Secrets 名称
         run: node generate-card.js
 
       - name: 提交新增的 SVG 卡片（只动 stats 文件夹）
