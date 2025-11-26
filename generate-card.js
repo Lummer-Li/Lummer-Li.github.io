@@ -2,10 +2,9 @@ const fs = require('fs');
 const path = require('path');
 const fetch = require('node-fetch').default; // 用 node-fetch@2
 
-// 配置（替换为你的用户名）
-const USERNAME = '你的GitHub用户名'; 
-// 原代码：const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
-const GITHUB_TOKEN = process.env.STATS_CARD_TOKEN; // 改为读取新的 Secrets
+// 配置（替换为你的用户名
+const USERNAME = 'Lummer-Li'; // 必须替换成你的 GitHub 用户名（比如 Lummer-Li）
+const GITHUB_TOKEN = process.env.STATS_CARD_TOKEN;
 const CURRENT_YEAR = new Date().getFullYear();
 
 // 新增 stats 文件夹（避免冲突，和现有文件夹不重名）
@@ -18,7 +17,8 @@ if (!fs.existsSync(statsDir)) {
 async function fetchStats() {
   const headers = {
     'Accept': 'application/vnd.github.v3+json',
-    'User-Agent': `${USERNAME} (GitHub Stats Card)`, // 必需：添加 User-Agent（用用户名或仓库名）
+    // 简化 User-Agent：纯英文+连字符，无非法字符（关键修改）
+    'User-Agent': 'GitHub-Stats-Card-Bot', 
     ...(GITHUB_TOKEN && { 'Authorization': `token ${GITHUB_TOKEN}` })
   };
 
