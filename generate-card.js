@@ -4,7 +4,8 @@ const fetch = require('node-fetch').default; // 用 node-fetch@2
 
 // 配置（替换为你的用户名）
 const USERNAME = '你的GitHub用户名'; 
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+// 原代码：const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const GITHUB_TOKEN = process.env.STATS_CARD_TOKEN; // 改为读取新的 Secrets
 const CURRENT_YEAR = new Date().getFullYear();
 
 // 新增 stats 文件夹（避免冲突，和现有文件夹不重名）
