@@ -1,0 +1,33 @@
+name: Auto Generate Stats Card
+on:
+  schedule:
+    - cron: '0 0 * * 1' # 每周一凌晨自动更新
+  workflow_dispatch: # 允许手动触发
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 拉取仓库代码
+        uses: actions/checkout@v4
+
+      - name: 安装 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 安装依赖
+        run: npm install node-fetch
+
+      - name: 生成 SVG 卡片
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub 自动提供的 Token，无需手动创建
+        run: node generate-card.js
+
+      - name: 提交更新后的 SVG
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add stats-card-auto.svg
+          git commit -m "Auto update stats card (${{ github.sha }})" || echo "无数据更新"
+          git push
