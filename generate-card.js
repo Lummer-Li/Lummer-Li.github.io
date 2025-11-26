@@ -18,8 +18,23 @@ if (!fs.existsSync(statsDir)) {
 async function fetchStats() {
   const headers = {
     'Accept': 'application/vnd.github.v3+json',
+    'User-Agent': `${USERNAME} (GitHub Stats Card)`, // 必需：添加 User-Agent（用用户名或仓库名）
     ...(GITHUB_TOKEN && { 'Authorization': `token ${GITHUB_TOKEN}` })
   };
+
+  // 1. 仅测试「用户信息接口」（注释其他接口，排除干扰）
+  try {
+    const userRes = await fetch(`https://api.github.com/users/${USERNAME}`, { headers });
+    // 打印完整响应信息（状态码 + 响应体）
+    const responseText = await userRes.text(); // 获取响应体内容
+    if (!userRes.ok) {
+      throw new Error(`用户信息请求失败：状态码 ${userRes.status}，响应体：${responseText}`);
+    }
+    console.log('用户信息请求成功！响应体：', responseText);
+    return { stars: 0, commits: 0, prs: 0, issues: 0, contributions: 0 }; // 临时返回空数据
+  } catch (err) {
+    throw new Error(`获取用户信息失败：${err.message}`);
+  }
 
   // 获取用户信息
   const userRes = await fetch(`https://api.github.com/users/${USERNAME}`, { headers });
