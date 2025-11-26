@@ -128,38 +128,64 @@ function calculateRank(stats) {
   return { rank, totalScore };
 }
 
-// 3. 生成 SVG 卡片
 function generateSVG(stats, rankInfo) {
   const { rank, totalScore } = rankInfo;
   const circumference = 2 * Math.PI * 42;
   const dashoffset = circumference - (totalScore / 100) * circumference;
 
   return `
-<svg width="500" height="300" viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg">
-  <rect x="0" y="0" width="500" height="300" rx="12" fill="#ffffff" stroke="#f0f0f0" stroke-width="1"/>
-  <rect x="0" y="0" width="4" height="300" rx="2" fill="url(#gradient)"/>
+<svg width="520" height="320" viewBox="0 0 520 320" xmlns="http://www.w3.org/2000/svg">
+  <!-- 1. 卡片主体：白色圆角 + 轻微阴影（核心样式） -->
+  <rect x="10" y="10" width="500" height="300" rx="16" fill="#ffffff" stroke="#f5f7fa" stroke-width="1" filter="drop-shadow(0 4px 6px rgba(0,0,0,0.03))"/>
+  
+  <!-- 2. 左侧蓝色装饰条（渐变+圆角） -->
+  <rect x="10" y="10" width="4" height="300" rx="2" fill="url(#gradient)"/>
+  
+  <!-- 3. 渐变定义（主蓝+浅蓝） -->
   <defs>
     <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="#165DFF"/>
       <stop offset="100%" stop-color="#4080FF"/>
     </linearGradient>
+    <!-- 环形图蓝色渐变 -->
+    <linearGradient id="circleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#165DFF"/>
+      <stop offset="100%" stop-color="#4080FF"/>
+    </linearGradient>
   </defs>
-  <text x="20" y="40" font-size="18" font-weight="600" fill="#165DFF">GitHub Stats</text>
-  <text x="20" y="65" font-size="12" fill="#86909C">@${USERNAME}</text>
-  <text x="20" y="100" font-size="14" fill="#4E5969">Total Stars Earned: </text>
-  <text x="220" y="100" font-size="14" font-weight="500" fill="#1D2129">${stats.stars}</text>
-  <text x="20" y="130" font-size="14" fill="#4E5969">Total Commits (${CURRENT_YEAR}): </text>
-  <text x="220" y="130" font-size="14" font-weight="500" fill="#1D2129">${stats.commits}</text>
-  <text x="20" y="160" font-size="14" fill="#4E5969">Total PRs: </text>
-  <text x="220" y="160" font-size="14" font-weight="500" fill="#1D2129">${stats.prs}</text>
-  <text x="20" y="190" font-size="14" fill="#4E5969">Total Issues: </text>
-  <text x="220" y="190" font-size="14" font-weight="500" fill="#1D2129">${stats.issues}</text>
-  <text x="20" y="220" font-size="14" fill="#4E5969">Contributed to (last year): </text>
-  <text x="220" y="220" font-size="14" font-weight="500" fill="#1D2129">${stats.contributions}</text>
-  <circle cx="400" cy="120" r="42" fill="none" stroke="#E8F3FF" stroke-width="8"/>
-  <circle cx="400" cy="120" r="42" fill="none" stroke="#165DFF" stroke-width="8" stroke-linecap="round" transform="rotate(-90 400 120)" stroke-dasharray="${circumference}" stroke-dashoffset="${dashoffset}"/>
-  <text x="400" y="125" font-size="24" font-weight="700" fill="#165DFF" text-anchor="middle">${rank}</text>
-  <text x="400" y="180" font-size="12" fill="#86909C" text-anchor="middle">Academic Rank</text>
+
+  <!-- 4. 标题和用户名（排版优化） -->
+  <text x="30" y="50" font-size="20" font-weight="600" fill="#165DFF" font-family="Arial, sans-serif">GitHub Stats</text>
+  <text x="30" y="78" font-size="13" fill="#86909C" font-family="Arial, sans-serif">@${USERNAME}</text>
+
+  <!-- 5. 统计项（左对齐+间距优化，白色背景衬托） -->
+  <g font-family="Arial, sans-serif">
+    <!-- Stars -->
+    <text x="30" y="120" font-size="14" fill="#4E5969">Total Stars Earned:</text>
+    <text x="230" y="120" font-size="15" font-weight="500" fill="#1D2129">${stats.stars}</text>
+    
+    <!-- Commits -->
+    <text x="30" y="155" font-size="14" fill="#4E5969">Total Commits (${CURRENT_YEAR}):</text>
+    <text x="230" y="155" font-size="15" font-weight="500" fill="#1D2129">${stats.commits}</text>
+    
+    <!-- PRs -->
+    <text x="30" y="190" font-size="14" fill="#4E5969">Total PRs:</text>
+    <text x="230" y="190" font-size="15" font-weight="500" fill="#1D2129">${stats.prs}</text>
+    
+    <!-- Issues -->
+    <text x="30" y="225" font-size="14" fill="#4E5969">Total Issues:</text>
+    <text x="230" y="225" font-size="15" font-weight="500" fill="#1D2129">${stats.issues}</text>
+    
+    <!-- Contributions -->
+    <text x="30" y="260" font-size="14" fill="#4E5969">Contributed to (last year):</text>
+    <text x="230" y="260" font-size="15" font-weight="500" fill="#1D2129">${stats.contributions}</text>
+  </g>
+
+  <!-- 6. 等级环形图（蓝色渐变+圆角描边，更精致） -->
+  <circle cx="410" cy="160" r="45" fill="none" stroke="#F0F5FF" stroke-width="9"/>
+  <circle cx="410" cy="160" r="45" fill="none" stroke="url(#circleGradient)" stroke-width="9" stroke-linecap="round" transform="rotate(-90 410 160)" stroke-dasharray="${circumference}" stroke-dashoffset="${dashoffset}"/>
+  <text x="410" y="168" font-size="26" font-weight="700" fill="#165DFF" text-anchor="middle" font-family="Arial, sans-serif">${rank}</text>
+  <text x="410" y="215" font-size="13" fill="#86909C" text-anchor="middle" font-family="Arial, sans-serif">Academic Rank</text>
 </svg>
   `.trim();
 }
