@@ -3,10 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Stats Card (日本学术评分)</title>
-    <!-- 引入 Font Awesome 图标库 -->
-    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>GitHub Academic Stats Card</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
+        :root {
+            --primary: #165DFF;
+            --primary-light: #E8F3FF;
+            --primary-dark: #0E42D2;
+            --text-primary: #1D2129;
+            --text-secondary: #4E5969;
+            --text-tertiary: #86909C;
+            --bg-white: #FFFFFF;
+            --bg-gray: #F5F7FA;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --radius: 16px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -15,32 +30,30 @@
         }
 
         body {
-            background-color: #f5f7fa;
-            padding: 20px;
+            background-color: var(--bg-gray);
+            padding: var(--spacing-md);
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            gap: 20px;
+            gap: var(--spacing-md);
             min-height: 100vh;
         }
 
-        /* 卡片主体样式 */
+        /* 移除搜索框，保留状态提示和卡片样式 */
         .stats-card {
-            background-color: #ffffff;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            padding: 24px;
+            background-color: var(--bg-white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: var(--spacing-lg);
             width: 100%;
-            max-width: 500px;
+            max-width: 520px;
             display: flex;
-            gap: 24px;
+            gap: var(--spacing-lg);
             position: relative;
             overflow: hidden;
-            display: none; /* 初始隐藏 */
+            display: none; /* 初始隐藏，获取数据后显示 */
         }
 
-        /* 卡片装饰元素 */
         .stats-card::before {
             content: '';
             position: absolute;
@@ -48,44 +61,55 @@
             left: 0;
             width: 4px;
             height: 100%;
-            background: linear-gradient(to bottom, #165DFF, #4080FF);
+            background: linear-gradient(to bottom, var(--primary), var(--primary-dark));
         }
 
-        .stats-content {
-            flex: 1;
-        }
-
-        .card-header {
+        .stats-header {
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 2px solid var(--primary-light);
+            object-fit: cover;
+        }
+
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .card-title {
-            color: #165DFF;
-            font-size: 1.4rem;
+            color: var(--primary);
+            font-size: 1.25rem;
             font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
         .card-title i {
-            font-size: 1.6rem;
+            font-size: 1.3rem;
         }
 
         .user-link {
-            font-size: 0.9rem;
-            color: #86909C;
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
             text-decoration: none;
             margin-top: 2px;
-            display: block;
+            transition: color 0.2s ease;
         }
 
         .user-link:hover {
-            color: #165DFF;
+            color: var(--primary);
             text-decoration: underline;
+            text-underline-offset: 2px;
         }
 
         .stats-list {
@@ -93,67 +117,71 @@
         }
 
         .stats-item {
-            margin-bottom: 14px;
-            padding-left: 4px;
-            position: relative;
+            margin-bottom: var(--spacing-md);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: var(--spacing-sm);
+            padding: 4px 0;
         }
 
-        /* 统计项图标 */
         .stats-icon {
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #165DFF;
-            font-size: 1rem;
+            color: var(--primary);
+            font-size: 1.05rem;
+            background-color: var(--primary-light);
+            border-radius: 6px;
+            flex-shrink: 0;
         }
 
         .stats-label {
-            color: #4E5969;
-            font-size: 0.95rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
             flex: 1;
+            letter-spacing: 0.02em;
         }
 
         .stats-value {
-            color: #1D2129;
-            font-weight: 500;
-            font-size: 1rem;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            min-width: 40px;
+            text-align: right;
         }
 
-        /* 等级展示区域 */
         .rank-section {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-width: 100px;
+            min-width: 105px;
+            padding: var(--spacing-sm) 0;
         }
 
         .rank-circle {
-            width: 80px;
-            height: 80px;
+            width: 88px;
+            height: 88px;
             position: relative;
-            margin-bottom: 8px;
+            margin-bottom: var(--spacing-sm);
         }
 
         .circle-bg {
             fill: none;
-            stroke: #E8F3FF;
-            stroke-width: 8;
+            stroke: var(--primary-light);
+            stroke-width: 9;
         }
 
         .circle-progress {
             fill: none;
-            stroke: #165DFF;
-            stroke-width: 8;
+            stroke: var(--primary);
+            stroke-width: 9;
             stroke-linecap: round;
             transform: rotate(-90deg);
             transform-origin: 50% 50%;
-            transition: stroke-dashoffset 1.2s ease;
+            transition: stroke-dashoffset 1.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .rank-text {
@@ -161,87 +189,141 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 700;
-            color: #165DFF;
+            color: var(--primary);
+            line-height: 1;
         }
 
         .rank-label {
-            color: #86909C;
-            font-size: 0.85rem;
+            color: var(--text-tertiary);
+            font-size: 0.82rem;
             text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        /* 加载/错误提示 */
         .status-message {
-            font-size: 1rem;
-            color: #718096;
+            font-size: 0.95rem;
+            color: var(--text-tertiary);
             text-align: center;
-            padding: 20px;
-            display: none;
+            padding: var(--spacing-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: 100%;
-            max-width: 500px;
+            max-width: 520px;
+            border-radius: 8px;
+            background-color: var(--bg-white);
+            box-shadow: var(--shadow);
         }
 
         .error-message {
             color: #DC3545;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+            flex-wrap: wrap;
         }
 
-        /* 动画效果 */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+        .error-message i {
+            font-size: 1.1rem;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .stats-card {
-            animation: fadeIn 0.6s ease-out forwards;
+            animation: fadeInUp 0.5s ease-out forwards;
         }
 
         .stats-item {
             opacity: 0;
-            animation: fadeIn 0.4s ease-out forwards;
-            animation-delay: calc(var(--item-index) * 0.1s);
+            animation: fadeInUp 0.35s ease-out forwards;
+            animation-delay: calc(var(--item-index) * 0.08s);
         }
 
-        /* 响应式适配 */
+        .rank-circle {
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out forwards;
+            animation-delay: 0.4s;
+        }
+
         @media (max-width: 480px) {
             .stats-card {
                 flex-direction: column;
-                padding: 20px;
-                gap: 16px;
+                padding: var(--spacing-md);
+                gap: var(--spacing-md);
+            }
+
+            .stats-header {
+                margin-bottom: var(--spacing-sm);
             }
 
             .card-title {
-                font-size: 1.2rem;
-                margin-bottom: 16px;
+                font-size: 1.15rem;
             }
 
             .rank-section {
                 flex-direction: row;
-                gap: 12px;
+                gap: var(--spacing-md);
                 justify-content: flex-start;
                 min-width: auto;
-                margin-top: 12px;
+                margin-top: var(--spacing-sm);
+                padding: var(--spacing-sm) var(--spacing-sm) 0;
+            }
+
+            .rank-circle {
+                width: 76px;
+                height: 76px;
+                margin-bottom: 0;
+            }
+
+            .rank-text {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .stats-label {
+                font-size: 0.85rem;
+            }
+
+            .stats-value {
+                font-size: 0.9rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- 加载提示 -->
-    <div id="loading" class="status-message">加载中...</div>
+    <!-- 加载状态提示 -->
+    <div id="loading" class="status-message">
+        <i class="fa-solid fa-spinner fa-spin"></i> 正在加载数据...
+    </div>
 
-    <!-- 错误提示 -->
-    <div id="error" class="status-message error-message"></div>
+    <!-- 错误提示（无参数/请求失败时显示） -->
+    <div id="error" class="status-message error-message" style="display: none;"></div>
 
-    <!-- 卡片主体 -->
+    <!-- 卡片主体（默认隐藏） -->
     <div class="stats-card" id="stats-card">
         <div class="stats-content">
-            <div class="card-header">
-                <h2 class="card-title">
-                    <i class="fa-brands fa-github"></i>
-                    GitHub Stats
-                </h2>
-                <a href="" class="user-link" id="user-url" target="_blank"></a>
+            <div class="stats-header">
+                <img 
+                    class="avatar" 
+                    id="user-avatar" 
+                    src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" 
+                    alt="User Avatar"
+                >
+                <div class="header-content">
+                    <h2 class="card-title">
+                        <i class="fa-brands fa-github"></i>
+                        GitHub Stats
+                    </h2>
+                    <a href="" class="user-link" id="user-url" target="_blank"></a>
+                </div>
             </div>
             <ul class="stats-list">
                 <li class="stats-item" style="--item-index: 1">
@@ -251,12 +333,12 @@
                 </li>
                 <li class="stats-item" style="--item-index: 2">
                     <div class="stats-icon"><i class="fa-solid fa-code"></i></div>
-                    <span class="stats-label">Total Commits (2025)</span>
+                    <span class="stats-label">Commits (@year)</span>
                     <span class="stats-value" id="commits-count">--</span>
                 </li>
                 <li class="stats-item" style="--item-index: 3">
                     <div class="stats-icon"><i class="fa-solid fa-code-fork"></i></div>
-                    <span class="stats-label">Total PRs</span>
+                    <span class="stats-label">Total Pull Requests</span>
                     <span class="stats-value" id="prs-count">--</span>
                 </li>
                 <li class="stats-item" style="--item-index: 4">
@@ -266,17 +348,17 @@
                 </li>
                 <li class="stats-item" style="--item-index: 5">
                     <div class="stats-icon"><i class="fa-solid fa-handshake-angle"></i></div>
-                    <span class="stats-label">Contributed to (last year)</span>
+                    <span class="stats-label">Contributed Repos (1y)</span>
                     <span class="stats-value" id="contrib-count">--</span>
                 </li>
             </ul>
         </div>
         <div class="rank-section">
             <div class="rank-circle">
-                <svg width="80" height="80" viewBox="0 0 100 100">
-                    <circle class="circle-bg" cx="50" cy="50" r="42"></circle>
-                    <circle class="circle-progress" id="rank-circle" cx="50" cy="50" r="42" 
-                            stroke-dasharray="263.89" stroke-dashoffset="263.89"></circle>
+                <svg width="88" height="88" viewBox="0 0 100 100">
+                    <circle class="circle-bg" cx="50" cy="50" r="41.5"></circle>
+                    <circle class="circle-progress" id="rank-circle" cx="50" cy="50" r="41.5" 
+                            stroke-dasharray="260.8" stroke-dashoffset="260.8"></circle>
                 </svg>
                 <div class="rank-text" id="rank-text">--</div>
             </div>
@@ -291,64 +373,57 @@
         const error = document.getElementById('error');
         const rankCircle = document.getElementById('rank-circle');
         const rankText = document.getElementById('rank-text');
+        const userAvatar = document.getElementById('user-avatar');
+        const userUrl = document.getElementById('user-url');
+        const commitsLabel = document.querySelector('.stats-item:nth-child(2) .stats-label');
 
-        // GitHub API 配置
+        // 配置项
+        const CORS_PROXY = 'https://fastly.jsdelivr.net/gh/iamowenke/proxy@main/proxy.php?url='; // 稳定代理
         const GITHUB_API_BASE = 'https://api.github.com';
         const CURRENT_YEAR = new Date().getFullYear();
-        const CIRCUMFERENCE = 2 * Math.PI * 42; // 环形进度条周长
+        const CIRCUMFERENCE = 2 * Math.PI * 41.5;
 
-        // 页面加载时自动获取URL参数并获取数据
-        window.addEventListener('DOMContentLoaded', () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const username = urlParams.get('username');
-            
-            if (username) {
-                fetchUserStats(username);
-            } else {
-                showError('请在URL参数中提供GitHub用户名，例如：?username=yourusername');
-            }
-        });
+        // 初始化年份标签
+        commitsLabel.textContent = commitsLabel.textContent.replace('@year', CURRENT_YEAR);
 
-        // 获取用户统计数据
-        async function fetchUserStats(username) {
-            showLoading();
-            try {
-                // 并行获取所有需要的数据
-                const [userData, statsData] = await Promise.all([
-                    fetchUserData(username),
-                    fetchAllStatsData(username)
-                ]);
-
-                // 渲染数据和等级
-                renderUserData(userData);
-                renderStatsData(statsData);
-                calculateAndRenderRank(statsData);
-                showCard();
-            } catch (err) {
-                showError(err.message || '获取数据失败，请稍后再试');
-            }
+        // 1. 解析URL中的username参数
+        function getUsernameFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('username');
         }
 
-        // 1. 获取用户基础信息
-        async function fetchUserData(username) {
-            const response = await fetch(`${GITHUB_API_BASE}/users/${username}`);
-            if (!response.ok) {
-                if (response.status === 404) throw new Error('用户名不存在');
-                if (response.status === 403) throw new Error('API限流，请稍后再试（每小时限60次未认证请求）');
-                throw new Error(`请求失败：${response.status}`);
+        // 2. 请求超时处理（10秒）
+        const fetchWithTimeout = async (url, options = {}, timeout = 10000) => {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), timeout);
+            try {
+                const response = await fetch(url, { ...options, signal: controller.signal });
+                clearTimeout(timeoutId);
+                return response;
+            } catch (err) {
+                clearTimeout(timeoutId);
+                throw err;
             }
+        };
+
+        // 3. 拼接代理URL
+        const getProxyUrl = (path) => `${CORS_PROXY}${encodeURIComponent(`${GITHUB_API_BASE}${path}`)}`;
+
+        // 4. 获取用户基础信息
+        async function fetchUserData(username) {
+            const response = await fetchWithTimeout(getProxyUrl(`/users/${username}`));
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
             return response.json();
         }
 
-        // 2. 获取所有统计数据（Stars、Commits、PRs、Issues、贡献仓库）
+        // 5. 获取所有统计数据
         async function fetchAllStatsData(username) {
-            // 并行获取各维度数据
             const [reposData, commitsData, prsData, issuesData, contribData] = await Promise.all([
-                fetchReposData(username),          // Stars
-                fetchYearlyCommits(username),      // 当年提交数
-                fetchPullRequestsData(username),   // PRs
-                fetchIssuesData(username),         // Issues
-                fetchContributedRepos(username)    // 贡献仓库数
+                fetchReposData(username),
+                fetchYearlyCommits(username),
+                fetchPullRequestsData(username),
+                fetchIssuesData(username),
+                fetchContributedRepos(username)
             ]);
 
             return {
@@ -360,84 +435,90 @@
             };
         }
 
-        // 2.1 获取仓库数据（Stars总数）
+        // 5.1 获取Stars总数
         async function fetchReposData(username) {
-            const response = await fetch(`${GITHUB_API_BASE}/users/${username}/repos?per_page=100`);
-            if (!response.ok) throw new Error('获取仓库数据失败');
-            
+            const response = await fetchWithTimeout(getProxyUrl(`/users/${username}/repos?per_page=100`));
+            if (!response.ok) throw new Error('仓库数据请求失败');
             const repos = await response.json();
             const totalStars = repos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
             return { totalStars };
         }
 
-        // 2.2 获取当年提交数
+        // 5.2 获取当年提交数（用events接口，更稳定）
         async function fetchYearlyCommits(username) {
-            const startDate = `${CURRENT_YEAR}-01-01T00:00:00Z`;
-            const endDate = `${CURRENT_YEAR}-12-31T23:59:59Z`;
-            
-            // 通过搜索API筛选当年提交
-            const response = await fetch(
-                `${GITHUB_API_BASE}/search/commits?q=author:${username}+committer-date:${startDate}..${endDate}`
-            );
-            
-            if (!response.ok) throw new Error('获取提交数据失败');
-            const data = await response.json();
-            return data.total_count || 0;
+            try {
+                const oneYearAgo = new Date();
+                oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+                const sinceDate = oneYearAgo.toISOString().split('T')[0];
+                const response = await fetchWithTimeout(getProxyUrl(`/users/${username}/events?per_page=300&since=${sinceDate}`));
+                if (!response.ok) throw new Error();
+                const events = await response.json();
+                let commitCount = 0;
+                events.forEach(event => {
+                    if (event.type === 'PushEvent' && new Date(event.created_at).getFullYear() === CURRENT_YEAR) {
+                        commitCount += event.payload.commits?.length || 0;
+                    }
+                });
+                return commitCount;
+            } catch (err) {
+                return 0; // 失败时返回0，避免卡片崩溃
+            }
         }
 
-        // 2.3 获取PR总数
+        // 5.3 获取PR总数
         async function fetchPullRequestsData(username) {
-            const response = await fetch(
-                `${GITHUB_API_BASE}/search/issues?q=author:${username}+type:pr+state:all`
-            );
-            
-            if (!response.ok) throw new Error('获取PR数据失败');
-            const data = await response.json();
-            return data.total_count || 0;
+            try {
+                const response = await fetchWithTimeout(getProxyUrl(`/search/issues?q=author:${username}+type:pr+state:all&per_page=1`));
+                if (!response.ok) throw new Error();
+                const data = await response.json();
+                return data.total_count || 0;
+            } catch (err) {
+                return 0;
+            }
         }
 
-        // 2.4 获取Issues总数
+        // 5.4 获取Issues总数
         async function fetchIssuesData(username) {
-            const response = await fetch(
-                `${GITHUB_API_BASE}/search/issues?q=author:${username}+type:issue+state:all`
-            );
-            
-            if (!response.ok) throw new Error('获取Issues数据失败');
-            const data = await response.json();
-            return data.total_count || 0;
+            try {
+                const response = await fetchWithTimeout(getProxyUrl(`/search/issues?q=author:${username}+type:issue+state:all&per_page=1`));
+                if (!response.ok) throw new Error();
+                const data = await response.json();
+                return data.total_count || 0;
+            } catch (err) {
+                return 0;
+            }
         }
 
-        // 2.5 获取过去一年贡献的仓库数
+        // 5.5 获取贡献仓库数
         async function fetchContributedRepos(username) {
-            const oneYearAgo = new Date();
-            oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
-            const sinceDate = oneYearAgo.toISOString().split('T')[0];
-            
-            const response = await fetch(
-                `${GITHUB_API_BASE}/users/${username}/events?per_page=300&since=${sinceDate}`
-            );
-            
-            if (!response.ok) throw new Error('获取贡献数据失败');
-            const events = await response.json();
-            
-            // 去重获取贡献过的仓库
-            const contributedRepos = new Set();
-            events.forEach(event => {
-                if (event.repo && event.type !== 'WatchEvent') {
-                    contributedRepos.add(event.repo.name);
-                }
-            });
-            
-            return contributedRepos.size;
+            try {
+                const oneYearAgo = new Date();
+                oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+                const sinceDate = oneYearAgo.toISOString().split('T')[0];
+                const response = await fetchWithTimeout(getProxyUrl(`/users/${username}/events?per_page=300&since=${sinceDate}`));
+                if (!response.ok) throw new Error();
+                const events = await response.json();
+                const repos = new Set();
+                events.forEach(event => {
+                    if (event.repo && !['WatchEvent', 'ForkEvent'].includes(event.type)) {
+                        repos.add(event.repo.name);
+                    }
+                });
+                return repos.size;
+            } catch (err) {
+                return 0;
+            }
         }
 
-        // 3. 渲染用户基础信息
+        // 6. 渲染用户信息
         function renderUserData(userData) {
-            document.getElementById('user-url').textContent = `@${userData.login}`;
-            document.getElementById('user-url').href = userData.html_url;
+            userAvatar.src = userData.avatar_url;
+            userAvatar.alt = `${userData.login}'s Avatar`;
+            userUrl.textContent = `@${userData.login}`;
+            userUrl.href = userData.html_url;
         }
 
-        // 4. 渲染统计数据
+        // 7. 渲染统计数据
         function renderStatsData(statsData) {
             document.getElementById('stars-count').textContent = formatNumber(statsData.stars);
             document.getElementById('commits-count').textContent = formatNumber(statsData.commits);
@@ -446,22 +527,19 @@
             document.getElementById('contrib-count').textContent = formatNumber(statsData.contributions);
         }
 
-        // 5. 日本学术评分系统：计算等级并渲染
+        // 8. 计算并渲染学术等级
         function calculateAndRenderRank(statsData) {
             const { commits, stars, prs, issues, contributions } = statsData;
-
-            // 各维度标准化得分（0-100分）
             const getStandardScore = (value, max) => Math.min(Math.round((value / max) * 100), 100);
             
             const scores = {
-                commits: getStandardScore(commits, 1000),    // 最高1000次提交
-                stars: getStandardScore(stars, 100),        // 最高100个Stars
-                prs: getStandardScore(prs, 50),             // 最高50个PRs
-                issues: getStandardScore(issues, 50),       // 最高50个Issues
-                contributions: getStandardScore(contributions, 20) // 最高20个贡献仓库
+                commits: getStandardScore(commits, 1000),
+                stars: getStandardScore(stars, 100),
+                prs: getStandardScore(prs, 50),
+                issues: getStandardScore(issues, 50),
+                contributions: getStandardScore(contributions, 20)
             };
 
-            // 加权总分（权重：提交40%、Stars20%、PRs20%、Issues10%、贡献10%）
             const totalScore = 
                 scores.commits * 0.4 + 
                 scores.stars * 0.2 + 
@@ -469,7 +547,7 @@
                 scores.issues * 0.1 + 
                 scores.contributions * 0.1;
 
-            // 日本学术等级映射（细分C+、C-增强区分度）
+            // 等级映射
             let rank = 'D';
             if (totalScore >= 95) rank = 'S+';
             else if (totalScore >= 90) rank = 'S';
@@ -482,39 +560,67 @@
             else if (totalScore >= 30) rank = 'C-';
             else rank = 'D';
 
-            // 渲染等级和进度条
             rankText.textContent = rank;
             const progress = (totalScore / 100) * CIRCUMFERENCE;
             rankCircle.style.strokeDasharray = CIRCUMFERENCE;
             rankCircle.style.strokeDashoffset = CIRCUMFERENCE - progress;
         }
 
-        // 工具函数：格式化数字（千分位简化）
+        // 9. 数字格式化工具
         function formatNumber(num) {
             if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
             if (num >= 1000) return (num / 1000).toFixed(1) + 'k';
             return num.toString();
         }
 
-        // 状态控制函数
-        function showLoading() {
-            loading.style.display = 'block';
-            error.style.display = 'none';
+        // 10. 显示错误信息
+        function showError(message) {
+            loading.style.display = 'none';
+            error.style.display = 'flex';
+            error.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> ${message}`;
             statsCard.style.display = 'none';
         }
 
+        // 11. 显示卡片
         function showCard() {
             loading.style.display = 'none';
             error.style.display = 'none';
             statsCard.style.display = 'flex';
         }
 
-        function showError(message) {
-            loading.style.display = 'none';
-            error.style.display = 'block';
-            error.textContent = message;
-            statsCard.style.display = 'none';
+        // 核心逻辑：页面加载时自动执行
+        async function init() {
+            const username = getUsernameFromUrl();
+            
+            // 无username参数时提示
+            if (!username) {
+                showError('请在URL后添加参数：?username=你的GitHub用户名（例：?username=welives）');
+                return;
+            }
+
+            try {
+                // 并行请求数据
+                const [userData, statsData] = await Promise.all([
+                    fetchUserData(username),
+                    fetchAllStatsData(username)
+                ]);
+
+                // 渲染卡片
+                renderUserData(userData);
+                renderStatsData(statsData);
+                calculateAndRenderRank(statsData);
+                showCard();
+            } catch (err) {
+                // 错误处理
+                const errorMsg = err.name === 'AbortError' ? '请求超时，请检查网络或稍后重试' :
+                                 err.message.includes('404') ? 'GitHub用户名不存在' :
+                                 '获取数据失败：' + err.message;
+                showError(errorMsg);
+            }
         }
+
+        // 页面加载完成后初始化
+        window.addEventListener('load', init);
     </script>
 </body>
 </html>
