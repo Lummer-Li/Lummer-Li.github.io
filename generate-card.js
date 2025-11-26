@@ -130,35 +130,29 @@ function calculateRank(stats) {
 
 function generateSVG(stats, rankInfo) {
   const { rank, totalScore } = rankInfo;
-  const circumference = 2 * Math.PI * 45; // 圆环半径45，和之前一致
-  const finalDashoffset = circumference - (totalScore / 100) * circumference; // 最终填充位置
+  const circumference = 2 * Math.PI * 45;
+  const finalDashoffset = circumference - (totalScore / 100) * circumference;
 
   return `
 <svg width="520" height="320" viewBox="0 0 520 320" xmlns="http://www.w3.org/2000/svg">
-  <!-- 1. 卡片主体：白色圆角+阴影 -->
-  <rect x="10" y="10" width="500" height="300" rx="16" fill="#ffffff" stroke="#f5f7fa" stroke-width="1" filter="drop-shadow(0 4px 6px rgba(0,0,0,0.03))"/>
+  <!-- 1. 卡片主体：白色圆角 + 加强四周阴影（核心修改） -->
+  <rect x="10" y="10" width="500" height="300" rx="16" fill="#ffffff" stroke="#f5f7fa" stroke-width="1" filter="drop-shadow(0 6px 12px rgba(0,0,0,0.08))"/>
   
-  <!-- 2. 左侧蓝色渐变装饰条 -->
-  <rect x="10" y="10" width="4" height="300" rx="2" fill="url(#gradient)"/>
+  <!-- 2. 移除左侧蓝边（直接删除原来的蓝边rect标签） -->
   
-  <!-- 3. 渐变定义（主蓝+浅蓝） -->
+  <!-- 3. 渐变定义（仅保留圆环渐变，不影响其他样式） -->
   <defs>
-    <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#165DFF"/>
-      <stop offset="100%" stop-color="#4080FF"/>
-    </linearGradient>
     <linearGradient id="circleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#165DFF"/>
-      <stop offset="100%" stop-color="#4080FF"/>
+      <stop offset="0%" stop-color="#165DFF"/><stop offset="100%" stop-color="#4080FF"/>
     </linearGradient>
   </defs>
 
-  <!-- 4. 标题和用户名 -->
-  <text x="30" y="50" font-size="20" font-weight="600" fill="#165DFF" font-family="Arial, sans-serif">GitHub Stats</text>
-  <text x="30" y="78" font-size="13" fill="#86909C" font-family="Arial, sans-serif">@${USERNAME}</text>
+  <!-- 4. 标题和用户名（调整左边距，适配无蓝边） -->
+  <text x="30" y="50" font-size="20" font-weight="600" fill="#165DFF" font-family="Arial,sans-serif">GitHub Stats</text>
+  <text x="30" y="78" font-size="13" fill="#86909C" font-family="Arial,sans-serif">@${USERNAME}</text>
 
-  <!-- 5. 统计项（左对齐排版） -->
-  <g font-family="Arial, sans-serif">
+  <!-- 5. 统计项（排版不变，保持整齐） -->
+  <g font-family="Arial,sans-serif">
     <text x="30" y="120" font-size="14" fill="#4E5969">Total Stars Earned:</text>
     <text x="230" y="120" font-size="15" font-weight="500" fill="#1D2129">${stats.stars}</text>
     
@@ -175,39 +169,17 @@ function generateSVG(stats, rankInfo) {
     <text x="230" y="260" font-size="15" font-weight="500" fill="#1D2129">${stats.contributions}</text>
   </g>
 
-  <!-- 6. 动态圆环（核心：添加animate动画） -->
-  <g transform="translate(0, 0)">
-    <!-- 背景圆环（浅蓝，不变） -->
+  <!-- 6. 动态圆环（保留之前的兼容动画） -->
+  <g>
     <circle cx="410" cy="160" r="45" fill="none" stroke="#F0F5FF" stroke-width="9"/>
-    
-    <!-- 动态填充圆环（蓝色渐变+动画） -->
-    <circle 
-      cx="410" cy="160" r="45" 
-      fill="none" 
-      stroke="url(#circleGradient)" 
-      stroke-width="9" 
-      stroke-linecap="round" 
-      transform="rotate(-90 410 160)" 
-      stroke-dasharray="${circumference}" 
-      stroke-dashoffset="${circumference}" <!-- 初始状态：完全空白 -->
-    >
-      <!-- 圆环动画：从0%填充到最终进度，1.5秒完成，缓动效果 -->
-      <animate 
-        attributeName="stroke-dashoffset" 
-        from="${circumference}" <!-- 起始：完全空白 -->
-        to="${finalDashoffset}" <!-- 结束：实际得分对应的填充位置 -->
-        dur="1.5s" <!-- 动画时长：1.5秒 -->
-        easing="ease-out" <!-- 缓动：开始快，结尾慢，更自然 -->
-        fill="freeze" <!-- 动画结束后停在最终状态，不循环 -->
-      />
+    <circle cx="410" cy="160" r="45" fill="none" stroke="url(#circleGradient)" stroke-width="9" stroke-linecap="round" transform="rotate(-90 410 160)" stroke-dasharray="${circumference}" stroke-dashoffset="${circumference}">
+      <animate attributeName="stroke-dashoffset" from="${circumference}" to="${finalDashoffset}" dur="1.5s" calcMode="linear" fill="freeze"/>
     </circle>
-    
-    <!-- 等级文字（动画结束后稳定显示） -->
-    <text x="410" y="168" font-size="26" font-weight="700" fill="#165DFF" text-anchor="middle" font-family="Arial, sans-serif">${rank}</text>
-    <text x="410" y="215" font-size="13" fill="#86909C" text-anchor="middle" font-family="Arial, sans-serif">Academic Rank</text>
+    <text x="410" y="168" font-size="26" font-weight="700" fill="#165DFF" text-anchor="middle" font-family="Arial,sans-serif">${rank}</text>
+    <text x="410" y="215" font-size="13" fill="#86909C" text-anchor="middle" font-family="Arial,sans-serif">Academic Rank</text>
   </g>
 </svg>
-  `.trim();
+  `.trim().replace(/\n\s+/g, ' ');
 }
 
 // 4. 保存到 stats 文件夹
